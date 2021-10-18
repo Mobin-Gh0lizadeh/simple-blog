@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" >
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit"  class="btn btn-primary" value="Login">
+    </form>
+    <a class="btn btn-primary" href="{% url 'account:reset_pass' %}" >reset or forgot password </a>
+{% endblock %}

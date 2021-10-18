@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+Category List       
+        <div class="nav nav-tabs">
+            {% for category in category_list %}   
+              {% if category.slug == category.slug %}
+              {% endif %}
+              <a class="nav-link active" href="{{ category.get_absolute_url }}" >{{ category.name }}</a><br />
+            {% endfor %}
+        </div>
+
+
+        <div class="pagination" style="width: 500px; margin: auto;">
+            <span>
+                {% if post_list.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ post_list.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ post_list.number }} of {{ post_list.paginator.num_pages }}.
+                </span>
+        
+                {% if post_list.has_next %}
+                    <a href="?page={{ post_list.next_page_number }}">next</a>
+                    <a href="?page={{ post_list.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        
+    
+    <div class="list-group" style="width: 500px; margin: auto;">
+        Post List
+        {% for post in post_list %}
+            <a class="list-group-item" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+        {% endfor %}
+    </div>
+
+{% endblock %}
